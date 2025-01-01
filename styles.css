@@ -1,9 +1,76 @@
-/*  your css code here. If applicable */
-function insert_Row() {
-  var table = document.getElementById("sampleTable");
-  var row = table.insertRow(0);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  cell1.innerHTML = "New Cell1";
-  cell2.innerHTML = "New Cell2";
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    flex-direction: column;
+}
+
+/* Styling for the Insert Row button */
+button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background-color: #4caf50;  /* Green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for the table */
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+/* Styling for table and its cells */
+table, th, td {
+    border: 1px solid #ddd;  /* Light gray border */
+}
+
+/* Table header styling */
+th {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Table data cell styling */
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Odd row background color */
+tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Even row background color */
+tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Row hover effect */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Ensuring that the table has some spacing and doesn't touch the page edges */
+#sampleTable {
+    margin-top: 20px;
 }
