@@ -1,25 +1,107 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<meta charset=utf-8 /> 
-	<title>Insert row in a table</title> 
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBookList</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .delete {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
 <body>
-	<table id="sampleTable" border="1"> 
-		<tr><td>Row1 cell1</td> 
-		<td>Row1 cell2</td></tr> 
-		<tr><td>Row2 cell1</td> 
-		<td>Row2 cell2</td></tr> 
-	</table><br> 
-	
-	<input type="button" onclick="insert_Row()" value="Insert row">  
-    <script type="text/javascript" src="./script.js">
-</script>
+    <div class="container">
+        <h1 class="text-center">MyBookList</h1>
 
+        <!-- Form to input book details -->
+        <div class="form-group">
+            <label for="title">Book Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Enter book title">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" class="form-control" id="author" placeholder="Enter author name">
+        </div>
+        <div class="form-group">
+            <label for="isbn">ISBN Number</label>
+            <input type="text" class="form-control" id="isbn" placeholder="Enter ISBN number">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="button" class="btn btn-primary" id="submit">Add Book</button>
+
+        <!-- Table to display books -->
+        <table class="table table-striped mt-4">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN#</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="book-list">
+                <!-- Rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('submit').addEventListener('click', function() {
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const isbn = document.getElementById('isbn').value;
+
+            // Basic validation to ensure fields are not empty
+            if (title && author && isbn) {
+                // Create a new row for the table
+                const row = document.createElement('tr');
+
+                // Create and append the Title, Author, ISBN# columns
+                const titleCell = document.createElement('td');
+                titleCell.textContent = title;
+                row.appendChild(titleCell);
+
+                const authorCell = document.createElement('td');
+                authorCell.textContent = author;
+                row.appendChild(authorCell);
+
+                const isbnCell = document.createElement('td');
+                isbnCell.textContent = isbn;
+                row.appendChild(isbnCell);
+
+                // Create and append the delete button
+                const deleteCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Clear';
+                deleteButton.classList.add('btn', 'btn-danger', 'delete');
+                deleteButton.addEventListener('click', function() {
+                    row.remove();  // Remove the row when clicked
+                });
+                deleteCell.appendChild(deleteButton);
+                row.appendChild(deleteCell);
+
+                // Append the row to the table body
+                document.getElementById('book-list').appendChild(row);
+
+                // Clear the input fields after submission
+                document.getElementById('title').value = '';
+                document.getElementById('author').value = '';
+                document.getElementById('isbn').value = '';
+            } else {
+                alert('Please fill in all fields!');
+            }
+        });
+    </script>
 </body>
-
 </html>
